@@ -12,7 +12,10 @@ buildscript {
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
     }
+
 }
+
+
 
 
 plugins {
@@ -32,16 +35,25 @@ dependencies {
     testCompile("org.mockito:mockito-core:2.23.4")
     compile("org.springframework.boot:spring-boot-starter-jdbc:$springBootVersion")
     compile("mysql:mysql-connector-java:6.0.6")
+    compile("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
+}
+
+springBoot {
+    buildInfo()
 }
 
 bootRun.environment([
         "WELCOME_MESSAGE": "A welcome message",
         "SPRING_DATASOURCE_URL": "jdbc:mysql://localhost:3306/tracker_dev?user=tracker&useSSL=false&useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false",
+        "MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE": "*",
+        "MANAGEMENT_ENDPOINT_HEALTH_SHOWDETAILS": "always",
 ])
 
 test.environment([
         "WELCOME_MESSAGE": "Hello from test",
         "SPRING_DATASOURCE_URL": "jdbc:mysql://localhost:3306/tracker_test?user=tracker&useSSL=false&useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false",
+        "MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE": "*",
+        "MANAGEMENT_ENDPOINT_HEALTH_SHOWDETAILS": "always",
 ])
 
 flyway {
