@@ -26,6 +26,7 @@ public class TimeEntry {
         this.date = date;
         this.hours = hours;
     }
+    /*dummy comment*/
 
     public Long getId() {
         return id;
