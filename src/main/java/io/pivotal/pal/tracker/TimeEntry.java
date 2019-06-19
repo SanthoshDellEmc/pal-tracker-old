@@ -28,7 +28,7 @@ public class TimeEntry {
     }
     /*dummy comment*/
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
